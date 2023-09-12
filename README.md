@@ -1,10 +1,8 @@
-# Create T3 App
+# Note Taking App
+
+### Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
-
-## What's next? How do I make an app with this?
-
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
 
 If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
 
@@ -14,21 +12,70 @@ If you are not familiar with the different technologies used in this project, pl
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
-## Learn More
+---
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Guide to Database setup using Supabase
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### Step 1: Sign Up/Login to Supabase
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+1. Go to the [Supabase website](https://supabase.io/).
+2. Click on "Start your project" or "Login" if you already have an account.
 
-## How do I deploy this?
+### Step 2: Create a New Project
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+1. Once logged in, you'll be in the Supabase dashboard.
+2. Click on the "New project" button.
+3. Fill in the required fields:
+   - **Project name:** Give your project a unique name.
+   - **Password:** Set a strong password for the database.
+   - **Region:** Choose the server region closest to your target audience for optimal performance.
 
-# GitHub OAuth App Guide
+### Step 3: Access Your Database
 
-If you can't view the embedded content below, [click here to access the guide directly](https://scribehow.com/embed/Create_a_GitHub_OAuth_App_for_a_Note-taking_Application__edPkl6pmQz6sCwydJKDpYQ).
+1. After creating your project, click on it from the dashboard.
+2. In the left sidebar, click on "Database" to view, modify, or query your new database.
 
-<iframe src="https://scribehow.com/embed/Create_a_GitHub_OAuth_App_for_a_Note-taking_Application__edPkl6pmQz6sCwydJKDpYQ" width="100%" height="640" allowfullscreen frameborder="0"></iframe>
+### Step 4: Get the Database URI
+
+1. In your project dashboard, navigate to the "Settings" section.
+2. Under the "API" tab, you'll find the Database URL. This is the URI you'll need.
+
+### Step 5: Add URI to `.env` File
+
+In your project's root directory, open or create a `.env` file and add the following line:
+
+\`\`\`
+DATABASE_URL="your_supabase_database_uri"
+\`\`\`
+
+Replace `your_supabase_database_uri` with the URI you copied in the previous step.
+
+
+--- 
+
+## GitHub OAuth App Guide
+
+If you want to view the complete GitHub OAuth flow setup, [click here to access the guide directly](https://scribehow.com/embed/Create_a_GitHub_OAuth_App_for_a_Note-taking_Application__edPkl6pmQz6sCwydJKDpYQ).
+
+#### Step 1: Register Your App with GitHub
+
+1. Log in to [GitHub](https://github.com/).
+2. Navigate to "Settings" > "Developer settings".
+3. Click on "OAuth Apps" > "New OAuth App".
+4. Fill out the required fields:
+   - **Application name:** The name of your app.
+   - **Homepage URL:** The main URL where your application is hosted.
+   - **Authorization callback URL:** The URL where GitHub will redirect users after authorization (typically `https://your-domain.com/api/auth/callback/github` for NextAuth.js setups).
+5. After registration, you'll receive a **Client ID** and **Client Secret**.
+
+#### Step 2: Store the Credentials in Your Project
+
+Add the GitHub **Client ID** and **Client Secret** to your project's `.env` file:
+
+```
+# Next Auth Github Provider
+GITHUB_CLIENT_ID="your_client_id"
+GITHUB_CLIENT_SECRET="your_client_secret"
+```
+
+---
