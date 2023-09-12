@@ -10,15 +10,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -54,6 +45,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    Topic         Topic[]
 }
 
 model VerificationToken {
@@ -62,4 +54,24 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Topic {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    title     String
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String 
+    notes     Note[]
+}
+
+model Note {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    title     String
+    content   String
+    topic     Topic    @relation(fields: [topicId], references: [id])
+    topicId   String
 }
