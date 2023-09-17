@@ -8,6 +8,7 @@ import {
 import GithubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
 import InstagramProvider from "next-auth/providers/instagram";
+import FacebookProvider from "next-auth/providers/facebook";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
@@ -41,12 +42,16 @@ const productionProviders: Provider[] = process.env.NODE_ENV === "production"
       clientSecret: env.DISCORD_CLIENT_SECRET
     }) as Provider,
     InstagramProvider({
-      clientId: env.INSTAGRAM_CLIENT_ID,
-      clientSecret: env.INSTAGRAM_CLIENT_SECRET,
+      clientId: env.FACEBOOK_CLIENT_ID,
+      clientSecret: env.FACEBOOK_CLIENT_SECRET,
     }) as Provider,
+    FacebookProvider({
+      clientId: env.FACEBOOK_CLIENT_ID,
+      clientSecret: env.FACEBOOK_CLIENT_SECRET
+    }) as Provider
   ]
   : [];
-  
+
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
  *

@@ -27,8 +27,8 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: z.string(),
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
-    INSTAGRAM_CLIENT_ID: z.string(),
-    INSTAGRAM_CLIENT_SECRET: z.string()
+    FACEBOOK_CLIENT_ID: z.string(),
+    FACEBOOK_CLIENT_SECRET: z.string()
   },
 
   /**
@@ -53,8 +53,8 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
-    INSTAGRAM_CLIENT_ID: process.env.INSTAGRAM_CLIENT_ID,
-    INSTAGRAM_CLIENT_SECRET: process.env.INSTAGRAM_CLIENT_SECRET
+    FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
+    FACEBOOK_CLIENT_SECRET: process.env.FACEBOOK_CLIENT_SECRET
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
