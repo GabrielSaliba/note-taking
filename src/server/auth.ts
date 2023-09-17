@@ -6,6 +6,8 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import DiscordProvider from "next-auth/providers/discord";
+import InstagramProvider from "next-auth/providers/instagram";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
@@ -52,6 +54,19 @@ export const authOptions: NextAuthOptions = {
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
+    ...(process.env.NODE_ENV === "production"
+      ? [
+        DiscordProvider({
+          clientId: env.DISCORD_CLIENT_ID,
+          clientSecret: env.DISCORD_CLIENT_SECRET
+        }),
+        InstagramProvider({
+          clientId: env.INSTAGRAM_CLIENT_ID,
+          clientSecret: env.INSTAGRAM_CLIENT_SECRET,
+        }),
+      ]
+      : []),
+
     /**
      * ...add more providers here.
      *
